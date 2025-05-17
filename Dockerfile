@@ -27,4 +27,6 @@ COPY --from=builder /app/node_modules ./node_modules
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+# CMD ["npm", "start"]
+# Ini bagian penting!
+CMD npx prisma db push && npm run start
