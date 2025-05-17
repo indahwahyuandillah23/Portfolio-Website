@@ -4,7 +4,6 @@ import { error } from "console";
 import { Resend } from "resend";
 
 const prisma = new PrismaClient();
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
     try {
@@ -22,6 +21,8 @@ export async function POST(req: Request) {
                 message
             },
         });
+
+        const resend = new Resend(process.env.RESEND_API_KEY);
 
         try {
             const emailResponse = await resend.emails.send({
