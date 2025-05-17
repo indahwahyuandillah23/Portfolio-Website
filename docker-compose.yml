@@ -47,9 +47,10 @@ services:
       - "3000:3000"
     volumes:
       - .:/app
-      - /app/node_modules  # agar node_modules di host tidak bentrok
+      # - /app/node_modules  # agar node_modules di host tidak bentrok
     environment:
       - NODE_ENV=development
+      - JWT_SECRET=supersecretkey123
     depends_on:
       - db
 

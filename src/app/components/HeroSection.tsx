@@ -22,7 +22,7 @@ const HeroSection = () => {
           transition={{ duration: 1, delay: 0.5 }}
           className="mt-4 text-xl md:text-2xl text-white/90"
         >
-          Software Engineer | Laravel, React, & Mobile App (Ionic)
+          Software Engineer | Laravel, React, Next, FastAPI & Mobile App (Ionic)
         </motion.p>
 
         <motion.div

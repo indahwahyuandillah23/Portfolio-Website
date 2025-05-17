@@ -4,34 +4,45 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { FaReact, FaAngular, FaLaravel, FaBootstrap, FaNodeJs, FaCss3 } from 'react-icons/fa';
+import * as Icons from 'react-icons/fa';
+
+type Technology = {
+  name: string;
+  icon: string;
+};
 
 type Project = {
   id: number;
   title: string;
   description: string;
-  technologies: string[];
+  technologies: Technology[];
   images: string[];
   githubUrl?: string;
   liveUrl?: string;
 };
 
-const getTechnologyIcon = (tech: string) => {
-  switch (tech) {
-    case "Laravel":
-      return <FaLaravel className="text-gray-700" />;
-    case "Bootstrap":
-      return <FaBootstrap className="text-gray-700" />;
-    case "Ionic":
-      return <FaReact className="text-gray-700" />;
-    case "Angular":
-      return <FaAngular className="text-gray-700" />;
-    case "Next.js":
-      return <FaNodeJs className="text-gray-700" />;
-    case "Tailwind CSS":
-        return <FaCss3 className="text-gray-700" />;
-    default:
-      return <span className="text-gray-700">{tech}</span>;
-  }
+// const getTechnologyIcon = (tech: string) => {
+//   switch (tech) {
+//     case "Laravel":
+//       return <FaLaravel className="text-gray-700" />;
+//     case "Bootstrap":
+//       return <FaBootstrap className="text-gray-700" />;
+//     case "Ionic":
+//       return <FaReact className="text-gray-700" />;
+//     case "Angular":
+//       return <FaAngular className="text-gray-700" />;
+//     case "Next.js":
+//       return <FaNodeJs className="text-gray-700" />;
+//     case "Tailwind CSS":
+//         return <FaCss3 className="text-gray-700" />;
+//     default:
+//       return <span className="text-gray-700">{tech}</span>;
+//   }
+// };
+
+const getTechnologyIcon = (iconName: string) => {
+  const Icon = (Icons as any)[iconName];
+  return Icon ? <Icon className="text-gray-700" /> : null;
 };
 
 const ProjectsSection = () => {
@@ -42,6 +53,7 @@ const ProjectsSection = () => {
       try {
         const res = await fetch("/api/projects");
         const data = await res.json();
+        console.log(data); 
         setProjects(data);
       } catch (error) {
         console.error("Failed to fetch projects:", error);
@@ -94,8 +106,8 @@ const ProjectsSection = () => {
                         key={i}
                         className="bg-gray-300 text-gray-800 text-sm px-3 py-1 rounded-full flex items-center gap-2"
                       >
-                        {getTechnologyIcon(tech)}
-                        {tech}
+                        {getTechnologyIcon(tech.icon)}
+                        {tech.name}
                       </span>
                     ))}
                   </motion.div>

@@ -4,15 +4,16 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-# Copy only package files first for better caching
+# Install deps dulu
 COPY package*.json ./
 RUN npm install
 
-# Copy all source code
+# Lalu copy semua file
 COPY . .
 
-# Expose port Next.js
+# Generate Prisma client di lokasi benar
+RUN npx prisma generate
+
 EXPOSE 3000
 
-# Jalankan prisma generate dan migrate setiap container naik
 CMD sh -c "npx prisma generate && npx prisma migrate deploy && npm run dev"
