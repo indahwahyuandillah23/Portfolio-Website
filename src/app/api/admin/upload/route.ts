@@ -64,9 +64,6 @@ export async function POST(req: Request) {
 
         const urls = [];
 
-        console.log(uploadedFiles);
-        
-
         for (const file of uploadedFiles) {
           const filePath = (file as any).filepath || (file as any).path;
           if (filePath) {
