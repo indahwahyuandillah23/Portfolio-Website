@@ -72,6 +72,8 @@ export default function AddProjectForm({
       });
 
       const data = await res.json();
+      console.log(data);
+      
       if (res.ok) {
         setImageUrls(data.urls);
         toast.success(`${data.urls.length} image(s) uploaded successfully!`);
