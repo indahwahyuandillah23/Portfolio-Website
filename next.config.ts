@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
   },
   images: {
     domains: ['res.cloudinary.com'], // tambahkan domain cloudinary di sini
+    unoptimized: true,
   },
 };
 
